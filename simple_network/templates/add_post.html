@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header">Добавить пост</div>
+    <div class="card-body">
+        <form action="" method="post" id="login-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group row">
+                    <label for="{{field.id_for_label}}" class="col-md-4 col-form-label text-md-right">{{field.label}}: </label>
+                    <div class="col-md-6">
+                        {{field}}
+                        <div class="form-error">{{field.errors}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

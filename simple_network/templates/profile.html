@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<div class="profile_container">
+    <div class="profile_header">
+        <div class="profile_image">
+            {% if user.photo %}
+            <img src="{{ user.get_photo_url }}" alt="" style="max-width: 200px;"></div>
+            {% else %}
+            <img src="/media/photos/placeholder.png" alt="" style="max-width: 200px;"></div>
+            {% endif %}
+        <div class="profile_nickname">{{ user.nickname }}</div>
+        {% if edit_permission %}
+        <a href="{% url 'settings' %}">Настройки</a>
+        {% endif %}
+    </div>
+    <div class="profile_posts">
+        <div class="profile_posts-title">Посты пользователя:</div>
+        {% if edit_permission %}
+        <a href="{% url 'add_post' %}">Добавить пост</a>
+        {% endif %}
+        {% if posts|length > 0 %}
+        <div class="profile_posts-list">
+            {% for post in posts %}
+            <div class="post_container">
+                <div class="post_publish_date">{{ post.publish_date }}</div>
+                {% if edit_permission %}
+                    <div class="post_delete"><a href="{% url 'delete_post' post.id %}">Удалить</a></div>
+                {% endif %}
+                <div class="post_text">{{ post.post_text }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no_posts">Этот пользователь ещё не создавал посты(</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
