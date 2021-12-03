@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.urls.base import reverse
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound
 
@@ -108,6 +109,11 @@ def delete_post_view(request, **kwargs):
         post_to_delete.delete()
     return redirect(reverse('profile', kwargs={'id': user_id}))
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('login')) 
+
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'register.html'
@@ -117,6 +123,12 @@ class RegisterUser(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = "Регистрация"
         return context
+    
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect(reverse('profile', kwargs={'id': request.user.id}))
+        else: 
+            return super().get(self, request)
 
 
 class LoginUser(LoginView):
@@ -130,3 +142,9 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse('profile', kwargs={'id': self.request.user.id})
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect(reverse('profile', kwargs={'id': request.user.id}))
+        else: 
+            return super().get(self, request)

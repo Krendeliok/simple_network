@@ -9,6 +9,7 @@ from account.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginUser.as_view(), name='login'),
+    path('logout/', user_logout, name='logout'),
     path('register/', RegisterUser.as_view(), name='register'),
     path('profile/<int:id>/', profile_view, name='profile'),
     path('settings/', settings_view, name='settings'),
