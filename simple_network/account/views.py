@@ -5,10 +5,10 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, request
 
 from .utils import *
-from .forms import AddPostForm, RegisterUserForm, LoginUserForm, SettingsForm
+from .forms import AddPostForm, RegisterUserForm, LoginUserForm, SearchForm, SettingsForm
 from .models import User, Post
 
 
@@ -108,6 +108,25 @@ def delete_post_view(request, **kwargs):
     if user_id == post_to_delete.author_id:
         post_to_delete.delete()
     return redirect(reverse('profile', kwargs={'id': user_id}))
+
+@login_required
+def search_view(request):
+    if request.method == "GET":
+        form = SearchForm()
+        users = User.objects.all()
+    elif request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            users = User.objects.filter(nickname=form.cleaned_data["search_field"])
+    return render(
+            request,
+            "search.html",
+            {
+                "title": "Поиск",
+                "form": form,
+                "users": users,
+            }
+        )
 
 @login_required
 def user_logout(request):

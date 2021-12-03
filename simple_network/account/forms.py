@@ -14,7 +14,6 @@ class RegisterUserForm(UserCreationForm):
         model = User
         fields = ("nickname", "email", "password1", "password2")
 
-
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label="Логин(Ваша почта)", widget=forms.TextInput(attrs={'class': 'form-input form-control mt-2'}))
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'class': 'form-input form-control mt-2'}))
@@ -37,3 +36,8 @@ class AddPostForm(forms.Form):
         model = Post
         fields = ("post_text")
 
+class SearchForm(forms.Form):
+    search_field = forms.CharField(label="Поиск", widget=forms.TextInput(attrs={'class': 'form-input form-control mt-2', 'placeholder': 'Введите ник пользователя'}))
+    
+    class Meta:
+        fields = ("search_field")

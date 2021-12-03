@@ -15,6 +15,7 @@ urlpatterns = [
     path('settings/', settings_view, name='settings'),
     path('post/new', add_post_view, name='add_post'),
     path('post/delete/<int:post_id>', delete_post_view, name='delete_post'),
+    path('search/', search_view, name='search'),
 ]
 
 if settings.DEBUG:
