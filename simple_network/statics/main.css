@@ -1,0 +1,131 @@
+body{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.container{
+    padding: 0;
+}
+
+.navbar{
+    padding: 5px;
+}
+
+.profile_container{
+    padding: 15px;
+}
+
+.profile_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile_nickname{
+    height: fit-content;
+    color: #30325c;
+    margin: 0 auto;
+}
+
+.settings_btn{
+    height: fit-content;
+}
+
+.profile_posts{
+    margin-top: 20px;
+}
+
+.profile_posts-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile_posts-title > h2 {
+    margin: 0 auto;
+}
+
+.add_post_btn{
+    height: fit-content;
+}
+
+.profile_posts-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.post_container{
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px solid rgb(228, 228, 228);
+    border-radius: 5px;
+}
+
+.post_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post_publish_date{
+    color :rgba(112, 112, 112, 0.664);
+}
+
+.post_text{
+    font-size: 24px;
+}
+
+.no_posts{
+    margin: 20px auto 0;
+    width: fit-content;
+    font-size: 24px;
+    color: rgb(114, 27, 27);
+}
+
+.search_field{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(46, 53, 117);
+}
+
+.user{
+    margin: 20px 0;
+    display: flex;
+}
+
+.nickname{
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user_ref{
+    text-decoration: none;
+    color: black
+}
+
+.user_ref:hover{
+    color: black
+}
+
+.no_users{
+    margin: 20px auto 0;
+    width: fit-content;
+    font-size: 24px;
+    color: rgb(114, 27, 27);
+}
+
+.save_btn{
+    margin-top: 15px;
+}
+
+.form-group > label {
+    font-size: 18px;
+}
+
+.curent_profile_photo > span{
+    font-size: 18px;
+}

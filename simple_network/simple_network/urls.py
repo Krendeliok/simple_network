@@ -16,7 +16,7 @@ urlpatterns = [
     path('post/new', add_post_view, name='add_post'),
     path('post/delete/<int:post_id>', delete_post_view, name='delete_post'),
     path('search/', search_view, name='search'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

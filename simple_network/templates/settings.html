@@ -13,15 +13,15 @@
                         {{field}}
                         <div class="form-error">{{field.errors}}</div>
                     </div>
-                    
                 </div>
             {% endfor %}
             {% if request.user.photo %}
                 <div class="curent_profile_photo">
+                    <span>Текущее фото профиля: </span>
                     <img src="{{ request.user.get_photo_url }}" alt="" style="max-width: 100px;">
                 </div>
             {% endif %}
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="submit" class="btn btn-primary save_btn">Сохранить</button>
         </form>
     </div>
 </div>

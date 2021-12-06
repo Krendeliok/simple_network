@@ -5,28 +5,33 @@
     <div class="profile_header">
         <div class="profile_image">
             {% if user.photo %}
-            <img src="{{ user.get_photo_url }}" alt="" style="max-width: 200px;"></div>
+            <img src="{{ user.get_photo_url }}" alt="" style="max-width: 200px;">
             {% else %}
-            <img src="/media/photos/placeholder.png" alt="" style="max-width: 200px;"></div>
+            <img src="/media/photos/placeholder.png" alt="" style="max-width: 200px;">
             {% endif %}
-        <div class="profile_nickname">{{ user.nickname }}</div>
+        </div>
+        <div class="profile_nickname"><h3>{{ user.nickname }}</h3></div>
         {% if edit_permission %}
-        <a href="{% url 'settings' %}">Настройки</a>
+        <a class="btn btn-primary settings_btn" href="{% url 'settings' %}"><i class="fas fa-cog"></i></a>
         {% endif %}
     </div>
     <div class="profile_posts">
-        <div class="profile_posts-title">Посты пользователя:</div>
-        {% if edit_permission %}
-        <a href="{% url 'add_post' %}">Добавить пост</a>
-        {% endif %}
+        <div class="profile_posts-title">
+            <h2>Посты пользователя:</h2>
+            {% if edit_permission %}
+            <a class="btn btn-success add_post_btn" href="{% url 'add_post' %}"><i class="fas fa-plus"></i></a>
+            {% endif %}
+        </div>
         {% if posts|length > 0 %}
         <div class="profile_posts-list">
             {% for post in posts %}
             <div class="post_container">
-                <div class="post_publish_date">{{ post.publish_date }}</div>
-                {% if edit_permission %}
-                    <div class="post_delete"><a href="{% url 'delete_post' post.id %}">Удалить</a></div>
-                {% endif %}
+                <div class="post_title">
+                    <div class="post_publish_date">{{ post.publish_date }}</div>
+                    {% if edit_permission %}
+                        <a class="post_delete btn btn-danger" href="{% url 'delete_post' post.id %}"><i class="fas fa-trash-alt"></i></a>
+                    {% endif %}
+                </div>
                 <div class="post_text">{{ post.post_text }}</div>
             </div>
             {% endfor %}
