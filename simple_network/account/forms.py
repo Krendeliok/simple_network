@@ -37,7 +37,7 @@ class AddPostForm(forms.Form):
         fields = ("post_text")
 
 class SearchForm(forms.Form):
-    search_field = forms.CharField(label="Поиск", widget=forms.TextInput(attrs={'class': 'form-input form-control mt-2', 'placeholder': 'Введите ник пользователя'}))
+    search_field = forms.CharField(label="Поиск", required=False, widget=forms.TextInput(attrs={'class': 'form-input form-control mt-2', 'placeholder': 'Введите ник пользователя'}))
     
     class Meta:
         fields = ("search_field")

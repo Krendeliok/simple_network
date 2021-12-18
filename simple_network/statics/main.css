@@ -2,6 +2,10 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.form-error{
+    color: rgb(182, 1, 1);
+}
+
 .container{
     padding: 0;
 }

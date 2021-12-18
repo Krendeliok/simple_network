@@ -66,8 +66,8 @@ def settings_view(request):
                     user.nickname = data.get("nickname")
                 if user.email != data.get("email"):
                     user.email = data.get("email")
-                if request.FILES["photo"]:
-                    user.photo = request.FILES["photo"]
+                # if request.FILES["photo"]:
+                #     user.photo = request.FILES["photo"]
                 user.save()
 
     return render(
@@ -117,7 +117,7 @@ def search_view(request):
     elif request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            users = User.objects.filter(nickname=form.cleaned_data["search_field"])
+            users = User.objects.filter(nickname=form.cleaned_data["search_field"]) if form.cleaned_data["search_field"] else User.objects.all()
     return render(
             request,
             "search.html",
@@ -131,7 +131,7 @@ def search_view(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return redirect(reverse('login')) 
+    return redirect(reverse_lazy('login')) 
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
